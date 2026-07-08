@@ -41,21 +41,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     super.dispose();
   }
 
-  Future<void> _handlePlay() async {
-    debugPrint('Play pressed: ${widget.video.youtubeId}');
-    try {
-      final state = await _controller.playerState;
-      if (state != PlayerState.playing && state != PlayerState.buffering) {
-        debugPrint('State was $state, re-loading video');
-        await _controller.loadVideoById(videoId: widget.video.youtubeId);
-      } else {
-        await _controller.playVideo();
-      }
-    } catch (e) {
-      debugPrint('Error playing video: $e');
-    }
-  }
-
   Future<void> _openInYouTube() async {
     final url = Uri.parse('https://www.youtube.com/watch?v=${widget.video.youtubeId}');
     try {
@@ -94,20 +79,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 controller: _controller,
               ),
             ),
-            YoutubeValueBuilder(
-              builder: (context, value) {
-                return Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                  color: Colors.black12,
-                  child: Text(
-                    'Player State: ${value.playerState.name}',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
-                  ),
-                );
-              },
-            ),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(20),
@@ -123,26 +94,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton.icon(
-                        onPressed: _handlePlay,
-                        icon: const Icon(Icons.play_arrow),
-                        label: const Text('REPRODUCIR VIDEO'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
-                    ),
-                    
-                    const SizedBox(height: 12),
-                    
+
                     SizedBox(
                       width: double.infinity,
                       child: OutlinedButton.icon(

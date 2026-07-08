@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../data/diagnostic_data.dart';
 import '../models/home_problem.dart';
 import '../models/diagnostic.dart';
@@ -32,7 +31,6 @@ class ProblemDetailScreen extends StatefulWidget {
 }
 
 class _ProblemDetailScreenState extends State<ProblemDetailScreen> {
-  YoutubePlayerController? _controller;
   late List<bool> _checkedSteps;
 
   bool get _hasVideo => widget.problem.getYoutubeId(AppLocalizations.of(context)!.localeName).isNotEmpty;
@@ -43,30 +41,11 @@ class _ProblemDetailScreenState extends State<ProblemDetailScreen> {
     _checkedSteps = List.filled(widget.problem.stepsEs.length, false);
     
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final lang = AppLocalizations.of(context)!.localeName;
-      if (_hasVideo) {
-        _controller = YoutubePlayerController(
-          params: const YoutubePlayerParams(
-            showControls: true,
-            showFullscreenButton: false,
-            mute: false,
-          ),
-        );
-        _controller!.loadVideoById(videoId: widget.problem.getYoutubeId(lang));
-        if (mounted) setState(() {});
-      }
-
       Provider.of<RepairHistoryService>(context, listen: false).addEntry(
         problem: widget.problem,
         eventType: HistoryEventType.viewed,
       );
     });
-  }
-
-  @override
-  void dispose() {
-    _controller?.close();
-    super.dispose();
   }
 
   Future<void> _openInYouTube() async {
@@ -278,32 +257,6 @@ class _ProblemDetailScreenState extends State<ProblemDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ---- Video o placeholder ----
-          if (_hasVideo && _controller != null)
-            YoutubePlayer(
-              controller: _controller!,
-              aspectRatio: 16 / 9,
-            )
-          else
-            Container(
-              height: 200,
-              width: double.infinity,
-              color: Colors.black12,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.play_circle_outline,
-                      size: 56, color: AppTheme.textSecondary.withAlpha(140)),
-                  const SizedBox(height: 8),
-                  Text(
-                    AppLocalizations.of(context)!.comingSoon,
-                    style: const TextStyle(
-                        color: AppTheme.textSecondary, fontSize: 13),
-                  ),
-                ],
-              ),
-            ),
-
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
