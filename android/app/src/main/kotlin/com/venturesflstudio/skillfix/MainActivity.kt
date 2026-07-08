@@ -1,4 +1,4 @@
-package com.example.skillfix
+package com.venturesflstudio.skillfix
 
 import io.flutter.embedding.android.FlutterActivity
 
