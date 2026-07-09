@@ -23,15 +23,37 @@ import '../data/mock_data.dart';
 ///   flutter run --dart-define=YOUTUBE_API_KEY=YOUR_KEY
 class YoutubeService {
   static const _baseUrl = 'https://www.googleapis.com/youtube/v3';
-  static const _apiKey = String.fromEnvironment('YOUTUBE_API_KEY');
+
+  // YouTube Data API v3 keys, each restricted to this app per platform in
+  // Google Cloud Console (Android: package + SHA-1; iOS: bundle id). Because
+  // they are application-restricted they only work from the signed app, even
+  // if this source is public.
+  static const _androidApiKey = 'AIzaSyCR-P2OWfwnbyy30a3c2lEkPOOeB7BBqQ0';
+  static const _iosApiKey = 'AIzaSyB9rBX9CKOyT0JjctLmg6hCk3i1b3YOfBY';
+
+  /// Key for the current platform. Web has no application restriction, so it
+  /// reuses the Android key.
+  static String get _apiKey {
+    if (kIsWeb) return _androidApiKey;
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.iOS:
+        return _iosApiKey;
+      default:
+        return _androidApiKey;
+    }
+  }
 
   // Identity sent so the API key can be locked to this app in Cloud Console
-  // ("Application restrictions"). The Android cert SHA-1 (uppercase hex, no
-  // colons) is injected per build because it differs debug vs. release:
+  // ("Application restrictions"). Defaults to the release signing cert SHA-1
+  // (uppercase hex, no colons); override per build for debug, which has a
+  // different SHA-1:
   //   --dart-define=ANDROID_CERT_SHA1=AB12...CD
   static const _androidPackage = 'com.venturesflstudio.skillfix';
   static const _iosBundleId = 'com.venturesflstudio.skillfix';
-  static const _androidCertSha1 = String.fromEnvironment('ANDROID_CERT_SHA1');
+  static const _androidCertSha1 = String.fromEnvironment(
+    'ANDROID_CERT_SHA1',
+    defaultValue: '5F8714FC2A93819F2F4CBFF526BB496A4CB96B06',
+  );
 
   static const _cacheTtl = Duration(days: 7);
   static const _cachePrefix = 'yt_search_';

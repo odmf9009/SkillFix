@@ -54,10 +54,10 @@ void main() {
   });
 
   testWidgets(
-      'sin API key ni video curado, el carrusel cae al botón de búsqueda',
+      'si la búsqueda en vivo falla y no hay video curado, cae al botón de búsqueda',
       (tester) async {
-    // Sin YOUTUBE_API_KEY (no configurada en el test) y sin video curado,
-    // la búsqueda en vivo falla y se muestra el fallback de búsqueda externa.
+    // En los widget tests el cliente HTTP está bloqueado (responde 400), así
+    // que la búsqueda en vivo falla; sin video curado se muestra el fallback.
     final problem = ProblemsData.all.firstWhere((p) => p.youtubeIdEs.isEmpty);
 
     await tester.pumpWidget(build(problem));
