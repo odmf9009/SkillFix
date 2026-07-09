@@ -3,17 +3,22 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 import '../data/diagnostic_data.dart';
+import '../data/mock_data.dart';
 import '../models/home_problem.dart';
 import '../models/diagnostic.dart';
 import '../models/shopping_list.dart';
 import '../models/repair_history.dart';
+import '../models/tutorial_video.dart';
 import '../services/favorites_service.dart';
 import '../services/shopping_list_service.dart';
 import '../services/repair_history_service.dart';
+import '../services/language_service.dart';
+import '../services/youtube_service.dart';
 import '../theme/app_theme.dart';
 import 'diagnostic_screen.dart';
 import 'shopping_list_detail_screen.dart';
 import 'add_edit_reminder_screen.dart';
+import 'video_player_screen.dart';
 import 'package:skillfix/l10n/app_localizations.dart';
 
 class ProblemDetailScreen extends StatefulWidget {
@@ -33,13 +38,20 @@ class ProblemDetailScreen extends StatefulWidget {
 class _ProblemDetailScreenState extends State<ProblemDetailScreen> {
   late List<bool> _checkedSteps;
 
-  bool get _hasVideo => widget.problem.getYoutubeId(AppLocalizations.of(context)!.localeName).isNotEmpty;
+  final YoutubeService _youtube = YoutubeService();
+  late final Future<List<TutorialVideo>> _videosFuture;
 
   @override
   void initState() {
     super.initState();
     _checkedSteps = List.filled(widget.problem.stepsEs.length, false);
-    
+
+    // Language selected in the app drives the YouTube search language.
+    final lang = Provider.of<LanguageService>(context, listen: false)
+        .locale
+        .languageCode;
+    _videosFuture = _loadRelatedVideos(lang);
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<RepairHistoryService>(context, listen: false).addEntry(
         problem: widget.problem,
@@ -48,10 +60,48 @@ class _ProblemDetailScreenState extends State<ProblemDetailScreen> {
     });
   }
 
+  /// Related videos for this problem: the curated video (if any) first, then
+  /// live YouTube results for the problem's description/title. If the API is
+  /// unavailable (no key / quota / offline) we still return the curated video
+  /// when it exists, so the carousel is never empty for free.
+  Future<List<TutorialVideo>> _loadRelatedVideos(String lang) async {
+    final curatedId = widget.problem.getYoutubeId(lang);
+    final curated = <TutorialVideo>[
+      if (curatedId.isNotEmpty)
+        TutorialVideo(
+          id: curatedId,
+          youtubeId: curatedId,
+          title: widget.problem.getTitle(lang),
+          channelName: '',
+          taskId: widget.problem.id,
+          tradeId: widget.problem.tradeId,
+          durationMinutes: 0,
+        ),
+    ];
+
+    try {
+      final results = await _youtube.searchByQuery(
+        _youtubeSearchQuery(lang),
+        languageCode: lang,
+      );
+      return [
+        ...curated,
+        for (final v in results)
+          if (v.youtubeId != curatedId) v,
+      ];
+    } catch (_) {
+      if (curated.isNotEmpty) return curated;
+      rethrow;
+    }
+  }
+
+  /// Opens a YouTube search relevant to this problem in the external app so
+  /// the user can keep browsing beyond the carousel.
   Future<void> _openInYouTube() async {
     final lang = AppLocalizations.of(context)!.localeName;
-    final url = Uri.parse(
-        'https://www.youtube.com/watch?v=${widget.problem.getYoutubeId(lang)}');
+    final url = Uri.parse('https://www.youtube.com/results')
+        .replace(queryParameters: {'search_query': _youtubeSearchQuery(lang)});
+
     try {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     } catch (_) {
@@ -61,6 +111,123 @@ class _ProblemDetailScreenState extends State<ProblemDetailScreen> {
         );
       }
     }
+  }
+
+  /// Plays a video inside the app (embedded YouTube player).
+  void _openVideoPlayer(TutorialVideo video) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => VideoPlayerScreen(
+          video: video,
+          tradeColor: widget.tradeColor,
+        ),
+      ),
+    );
+  }
+
+  /// Builds a search query for the problem. Prefers the description because it
+  /// is more specific (e.g. "el faucet gotea agua aunque esté cerrado"), and
+  /// falls back to the title when there is no description. The trade name is
+  /// appended to keep results on-topic (e.g. "... Plomería").
+  String _youtubeSearchQuery(String lang) {
+    final problem = widget.problem;
+    final description = problem.getDescription(lang).trim();
+    final searchTerm =
+        description.isNotEmpty ? description : problem.getTitle(lang).trim();
+
+    final trade = MockData.tradeForId(problem.tradeId);
+    final tradeName = lang == 'en' ? trade.nameEn : trade.nameEs;
+    return '$searchTerm $tradeName'.trim();
+  }
+
+  // ---- Sección de videos relacionados (carrusel horizontal) ----
+
+  Widget _relatedVideosSection(String lang) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _sectionTitle(
+          lang == 'en' ? 'Related videos' : 'Videos relacionados',
+          Icons.smart_display,
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 190,
+          child: FutureBuilder<List<TutorialVideo>>(
+            future: _videosFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return _videoCarouselLoading();
+              }
+              final videos = snapshot.data ?? const <TutorialVideo>[];
+              if (videos.isEmpty) {
+                return _videoCarouselFallback(lang);
+              }
+              return ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: videos.length + 1,
+                separatorBuilder: (_, _) => const SizedBox(width: 12),
+                itemBuilder: (context, i) {
+                  // Trailing card: keep searching on YouTube directly.
+                  if (i == videos.length) {
+                    return _VideoActionCard(
+                      icon: Icons.search,
+                      accent: widget.tradeColor,
+                      label: lang == 'en'
+                          ? 'Search more\non YouTube'
+                          : 'Buscar más\nen YouTube',
+                      onTap: _openInYouTube,
+                    );
+                  }
+                  return _VideoCarouselCard(
+                    video: videos[i],
+                    accent: widget.tradeColor,
+                    onTap: () => _openVideoPlayer(videos[i]),
+                  );
+                },
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _videoCarouselLoading() {
+    return ListView.separated(
+      scrollDirection: Axis.horizontal,
+      itemCount: 3,
+      separatorBuilder: (_, _) => const SizedBox(width: 12),
+      itemBuilder: (_, _) => Container(
+        width: 190,
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(14),
+        ),
+        alignment: Alignment.center,
+        child: const SizedBox(
+          width: 22,
+          height: 22,
+          child: CircularProgressIndicator(strokeWidth: 2),
+        ),
+      ),
+    );
+  }
+
+  Widget _videoCarouselFallback(String lang) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: _VideoActionCard(
+        icon: Icons.smart_display,
+        accent: widget.tradeColor,
+        wide: true,
+        label: lang == 'en'
+            ? 'Search videos on YouTube'
+            : 'Buscar videos en YouTube',
+        onTap: _openInYouTube,
+      ),
+    );
   }
 
   void _showHelpDialog() {
@@ -355,6 +522,11 @@ class _ProblemDetailScreenState extends State<ProblemDetailScreen> {
 
                 const SizedBox(height: 24),
 
+                // ---- Carrusel de videos relacionados ----
+                _relatedVideosSection(lang),
+
+                const SizedBox(height: 24),
+
                 // ---- Botones de acción ----
                 Consumer<RepairHistoryService>(
                   builder: (context, historyService, _) {
@@ -418,26 +590,6 @@ class _ProblemDetailScreenState extends State<ProblemDetailScreen> {
                   ),
                 ),
                 const SizedBox(height: 12),
-
-                if (_hasVideo) ...[
-                  SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton.icon(
-                      onPressed: _openInYouTube,
-                      icon: const Icon(Icons.open_in_new),
-                      label: Text(AppLocalizations.of(context)!.watchOnYoutube),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        foregroundColor: widget.tradeColor,
-                        side: BorderSide(color: widget.tradeColor),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                ],
 
                 SizedBox(
                   width: double.infinity,
@@ -881,6 +1033,143 @@ class _ProblemDetailScreenState extends State<ProblemDetailScreen> {
               ),
             )),
       ],
+    );
+  }
+}
+
+/// Vertical video card used inside the horizontal related-videos carousel:
+/// thumbnail with a play overlay on top, title below. Tapping plays the video
+/// embedded in the app.
+class _VideoCarouselCard extends StatelessWidget {
+  final TutorialVideo video;
+  final Color accent;
+  final VoidCallback onTap;
+
+  const _VideoCarouselCard({
+    required this.video,
+    required this.accent,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 190,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: const [
+            BoxShadow(
+              color: AppTheme.cardShadow,
+              blurRadius: 6,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.network(
+                    video.thumbnailUrl,
+                    width: 190,
+                    height: 107,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, _, _) => Container(
+                      width: 190,
+                      height: 107,
+                      color: Colors.black12,
+                      child: const Icon(Icons.videocam_off, color: Colors.black38),
+                    ),
+                  ),
+                  Container(
+                    width: 42,
+                    height: 42,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withAlpha(120),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.play_arrow, color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  video.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: AppTheme.textPrimary,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Action card inside the carousel (search more / fallback). [wide] makes it
+/// wider for the empty-state fallback.
+class _VideoActionCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color accent;
+  final VoidCallback onTap;
+  final bool wide;
+
+  const _VideoActionCard({
+    required this.icon,
+    required this.label,
+    required this.accent,
+    required this.onTap,
+    this.wide = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: wide ? 240 : 150,
+        decoration: BoxDecoration(
+          color: accent.withAlpha(15),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: accent.withAlpha(80)),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: accent, size: 30),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                  color: accent,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
