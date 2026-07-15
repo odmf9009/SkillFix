@@ -1,0 +1,292 @@
+{
+  "data/calculators_data.dart": {
+    "mtime": 1782594086.0,
+    "ast_hash": "82723767b91b9579ba74939d3700609d",
+    "semantic_hash": "82723767b91b9579ba74939d3700609d"
+  },
+  "data/diagnostic_data.dart": {
+    "mtime": 1782590010.0,
+    "ast_hash": "6818629c0fb0f8454116bcc86a723acb",
+    "semantic_hash": "6818629c0fb0f8454116bcc86a723acb"
+  },
+  "data/emergency_data.dart": {
+    "mtime": 1782595488.0,
+    "ast_hash": "981184b2edba2a0dc5774b3660afb3b3",
+    "semantic_hash": "981184b2edba2a0dc5774b3660afb3b3"
+  },
+  "data/maintenance_data.dart": {
+    "mtime": 1782586802.0,
+    "ast_hash": "74d6dad88a0bdb997bd3b4479a715971",
+    "semantic_hash": "74d6dad88a0bdb997bd3b4479a715971"
+  },
+  "data/mock_data.dart": {
+    "mtime": 1782579842.0,
+    "ast_hash": "cd2ebc4395db2372611468b1a5700f54",
+    "semantic_hash": "cd2ebc4395db2372611468b1a5700f54"
+  },
+  "data/problems_data.dart": {
+    "mtime": 1782584706.0,
+    "ast_hash": "cb6e9f575658ba3bf7c7a5752095fe7d",
+    "semantic_hash": "cb6e9f575658ba3bf7c7a5752095fe7d"
+  },
+  "data/seasonal_data.dart": {
+    "mtime": 1782599732.0,
+    "ast_hash": "e0fc933912b0485e62f74b7220e9f9e3",
+    "semantic_hash": "e0fc933912b0485e62f74b7220e9f9e3"
+  },
+  "l10n/app_localizations.dart": {
+    "mtime": 1783607179.6554027,
+    "ast_hash": "cd3451dac1a34d3775c6ae56c2e0b386",
+    "semantic_hash": "cd3451dac1a34d3775c6ae56c2e0b386"
+  },
+  "l10n/app_localizations_en.dart": {
+    "mtime": 1783607179.6527355,
+    "ast_hash": "8e878555bc4e433f701fb30d332c3d81",
+    "semantic_hash": "8e878555bc4e433f701fb30d332c3d81"
+  },
+  "l10n/app_localizations_es.dart": {
+    "mtime": 1783607179.6534119,
+    "ast_hash": "5c89c01b2e6bb19a6eca8b40c7ac85f6",
+    "semantic_hash": "5c89c01b2e6bb19a6eca8b40c7ac85f6"
+  },
+  "main.dart": {
+    "mtime": 1782605576.0,
+    "ast_hash": "94d9473e9f33bffbf78545c11290ed40",
+    "semantic_hash": "94d9473e9f33bffbf78545c11290ed40"
+  },
+  "models/calculator_tool.dart": {
+    "mtime": 1782570316.0,
+    "ast_hash": "7d0d38df41ea79c25cf1d00bb9f33137",
+    "semantic_hash": "7d0d38df41ea79c25cf1d00bb9f33137"
+  },
+  "models/diagnostic.dart": {
+    "mtime": 1782585320.0,
+    "ast_hash": "f134497939bf7e1934db2f188e21f857",
+    "semantic_hash": "f134497939bf7e1934db2f188e21f857"
+  },
+  "models/emergency.dart": {
+    "mtime": 1782564044.0,
+    "ast_hash": "23cf880b2615c980ba7198ebb791e1a2",
+    "semantic_hash": "23cf880b2615c980ba7198ebb791e1a2"
+  },
+  "models/home_problem.dart": {
+    "mtime": 1782590724.0,
+    "ast_hash": "9c5b233833f18092752d1c6f8d7e22bc",
+    "semantic_hash": "9c5b233833f18092752d1c6f8d7e22bc"
+  },
+  "models/maintenance_reminder.dart": {
+    "mtime": 1782590730.0,
+    "ast_hash": "6d819c122b60c00c292222f2c28b664e",
+    "semantic_hash": "6d819c122b60c00c292222f2c28b664e"
+  },
+  "models/repair_history.dart": {
+    "mtime": 1782557738.0,
+    "ast_hash": "db00257a240cd87df6278dd0b0544e3d",
+    "semantic_hash": "db00257a240cd87df6278dd0b0544e3d"
+  },
+  "models/seasonal_checklist.dart": {
+    "mtime": 1782599492.0,
+    "ast_hash": "981050d2f2541295ccfe8ad369f963b9",
+    "semantic_hash": "981050d2f2541295ccfe8ad369f963b9"
+  },
+  "models/shopping_list.dart": {
+    "mtime": 1782515066.0,
+    "ast_hash": "0958f7e1715f4b589859c3401b9d6ffb",
+    "semantic_hash": "0958f7e1715f4b589859c3401b9d6ffb"
+  },
+  "models/task.dart": {
+    "mtime": 1782579822.0,
+    "ast_hash": "f9fb79125625a9537aaf22d32369430f",
+    "semantic_hash": "f9fb79125625a9537aaf22d32369430f"
+  },
+  "models/trade.dart": {
+    "mtime": 1782579820.0,
+    "ast_hash": "827d20b70d7c3a7d0cfecc5fcb56ad5e",
+    "semantic_hash": "827d20b70d7c3a7d0cfecc5fcb56ad5e"
+  },
+  "models/tutorial_video.dart": {
+    "mtime": 1783493613.226107,
+    "ast_hash": "b9f5c3b0f02c6d6e997352b7593364bc",
+    "semantic_hash": "b9f5c3b0f02c6d6e997352b7593364bc"
+  },
+  "screens/add_edit_reminder_screen.dart": {
+    "mtime": 1782590734.0,
+    "ast_hash": "84289b0216fd83f597152b542cdcacf5",
+    "semantic_hash": "84289b0216fd83f597152b542cdcacf5"
+  },
+  "screens/calculator_detail_screen.dart": {
+    "mtime": 1782591058.0,
+    "ast_hash": "e04aec9ffcd5e8531a9385576b8324df",
+    "semantic_hash": "e04aec9ffcd5e8531a9385576b8324df"
+  },
+  "screens/calculators_screen.dart": {
+    "mtime": 1782594802.0,
+    "ast_hash": "5e88b547e6d607a4c7836e88160dce8d",
+    "semantic_hash": "5e88b547e6d607a4c7836e88160dce8d"
+  },
+  "screens/diagnostic_list_screen.dart": {
+    "mtime": 1782585520.0,
+    "ast_hash": "92994d563d45b98b30bd8eed53a5e004",
+    "semantic_hash": "92994d563d45b98b30bd8eed53a5e004"
+  },
+  "screens/diagnostic_result_screen.dart": {
+    "mtime": 1783493428.4470243,
+    "ast_hash": "4ba4715d6c86767ce781e246c5f73d87",
+    "semantic_hash": "4ba4715d6c86767ce781e246c5f73d87"
+  },
+  "screens/diagnostic_screen.dart": {
+    "mtime": 1782568690.0,
+    "ast_hash": "d424a0a0c194c788b96a5bddb4255621",
+    "semantic_hash": "d424a0a0c194c788b96a5bddb4255621"
+  },
+  "screens/emergency_detail_screen.dart": {
+    "mtime": 1782568670.0,
+    "ast_hash": "703db249bd2ac0994ab558ee59495181",
+    "semantic_hash": "703db249bd2ac0994ab558ee59495181"
+  },
+  "screens/emergency_screen.dart": {
+    "mtime": 1782568688.0,
+    "ast_hash": "252a21f52c5350b4616d200310fb121a",
+    "semantic_hash": "252a21f52c5350b4616d200310fb121a"
+  },
+  "screens/favorites_screen.dart": {
+    "mtime": 1782568668.0,
+    "ast_hash": "e133b037ab3169a0c3a0212ceea92f0c",
+    "semantic_hash": "e133b037ab3169a0c3a0212ceea92f0c"
+  },
+  "screens/home_screen.dart": {
+    "mtime": 1782605848.0,
+    "ast_hash": "27a08dd10aa110754de0e15eb5ba1a13",
+    "semantic_hash": "27a08dd10aa110754de0e15eb5ba1a13"
+  },
+  "screens/main_shell.dart": {
+    "mtime": 1783602263.8925436,
+    "ast_hash": "e0941524d7f5dc31e02f7b95e02213e2",
+    "semantic_hash": "e0941524d7f5dc31e02f7b95e02213e2"
+  },
+  "screens/maintenance_screen.dart": {
+    "mtime": 1782599688.0,
+    "ast_hash": "a287050bee6a29acaece97bd0408687c",
+    "semantic_hash": "a287050bee6a29acaece97bd0408687c"
+  },
+  "screens/onboarding_screen.dart": {
+    "mtime": 1782605902.0,
+    "ast_hash": "dae01c38c937d6d481d423d4ee527cfe",
+    "semantic_hash": "dae01c38c937d6d481d423d4ee527cfe"
+  },
+  "screens/problem_detail_screen.dart": {
+    "mtime": 1783593399.9258764,
+    "ast_hash": "b0cabfd55280f0668eafc86475367ccd",
+    "semantic_hash": "b0cabfd55280f0668eafc86475367ccd"
+  },
+  "screens/problem_list_screen.dart": {
+    "mtime": 1782590760.0,
+    "ast_hash": "deba96223d50aee4f9172bfee26e6594",
+    "semantic_hash": "deba96223d50aee4f9172bfee26e6594"
+  },
+  "screens/repair_history_screen.dart": {
+    "mtime": 1782590770.0,
+    "ast_hash": "d5fe290dd28c3ef0b65849e115dd858c",
+    "semantic_hash": "d5fe290dd28c3ef0b65849e115dd858c"
+  },
+  "screens/seasonal_screen.dart": {
+    "mtime": 1782599602.0,
+    "ast_hash": "44210bbd90d1ea6d5883a137eef81222",
+    "semantic_hash": "44210bbd90d1ea6d5883a137eef81222"
+  },
+  "screens/shopping_list_detail_screen.dart": {
+    "mtime": 1782598704.0,
+    "ast_hash": "5cff867b3925d21fcec562da6d253b13",
+    "semantic_hash": "5cff867b3925d21fcec562da6d253b13"
+  },
+  "screens/shopping_lists_screen.dart": {
+    "mtime": 1782568676.0,
+    "ast_hash": "480d642e3499a39b277b4f7f148d8519",
+    "semantic_hash": "480d642e3499a39b277b4f7f148d8519"
+  },
+  "screens/splash_screen.dart": {
+    "mtime": 1782606638.0,
+    "ast_hash": "655cfd471cf22bde1268c9546b4dd82e",
+    "semantic_hash": "655cfd471cf22bde1268c9546b4dd82e"
+  },
+  "screens/task_list_screen.dart": {
+    "mtime": 1782158324.0,
+    "ast_hash": "9af9fdad37ff8fcd46d017f98d38c112",
+    "semantic_hash": "9af9fdad37ff8fcd46d017f98d38c112"
+  },
+  "screens/video_list_screen.dart": {
+    "mtime": 1782162122.0,
+    "ast_hash": "9519b87d543cbe16b8347937b886201a",
+    "semantic_hash": "9519b87d543cbe16b8347937b886201a"
+  },
+  "screens/video_player_screen.dart": {
+    "mtime": 1783505749.5693939,
+    "ast_hash": "ad342df68d49ee3254167def91e5a005",
+    "semantic_hash": "ad342df68d49ee3254167def91e5a005"
+  },
+  "services/favorites_service.dart": {
+    "mtime": 1782514684.0,
+    "ast_hash": "88e5c72fe04d2315784891b947834a87",
+    "semantic_hash": "88e5c72fe04d2315784891b947834a87"
+  },
+  "services/language_service.dart": {
+    "mtime": 1782596000.0,
+    "ast_hash": "333567e3f8bfd0f3dc83a36f3559b8c1",
+    "semantic_hash": "333567e3f8bfd0f3dc83a36f3559b8c1"
+  },
+  "services/maintenance_service.dart": {
+    "mtime": 1782590774.0,
+    "ast_hash": "bf5edd7b0af0fb65a6d97359e31e448e",
+    "semantic_hash": "bf5edd7b0af0fb65a6d97359e31e448e"
+  },
+  "services/repair_history_service.dart": {
+    "mtime": 1782568844.0,
+    "ast_hash": "debc99e94690145660ae16dadc53d7e0",
+    "semantic_hash": "debc99e94690145660ae16dadc53d7e0"
+  },
+  "services/seasonal_service.dart": {
+    "mtime": 1782599568.0,
+    "ast_hash": "5ec3a349c4248503fc9eb5658463f0a6",
+    "semantic_hash": "5ec3a349c4248503fc9eb5658463f0a6"
+  },
+  "services/shopping_list_service.dart": {
+    "mtime": 1782515074.0,
+    "ast_hash": "ce37bcdb61fc8f47c449f07ab09306c4",
+    "semantic_hash": "ce37bcdb61fc8f47c449f07ab09306c4"
+  },
+  "services/youtube_service.dart": {
+    "mtime": 1783598980.5229676,
+    "ast_hash": "965e904613c230eb6723e4eb3a291680",
+    "semantic_hash": "965e904613c230eb6723e4eb3a291680"
+  },
+  "theme/app_theme.dart": {
+    "mtime": 1782158156.0,
+    "ast_hash": "835715394ed66a2b7f13ffc6c4480f61",
+    "semantic_hash": "835715394ed66a2b7f13ffc6c4480f61"
+  },
+  "utils/affiliate_links.dart": {
+    "mtime": 1782598920.0,
+    "ast_hash": "e9077b59afb30850319e3038d44900e5",
+    "semantic_hash": "e9077b59afb30850319e3038d44900e5"
+  },
+  "widgets/problem_card.dart": {
+    "mtime": 1782568658.0,
+    "ast_hash": "fa59f04295fe8c06696920fe86ef063b",
+    "semantic_hash": "fa59f04295fe8c06696920fe86ef063b"
+  },
+  "widgets/task_card.dart": {
+    "mtime": 1782158274.0,
+    "ast_hash": "02c20f6203579de9765c39a2790e5fa0",
+    "semantic_hash": "02c20f6203579de9765c39a2790e5fa0"
+  },
+  "widgets/trade_card.dart": {
+    "mtime": 1782158262.0,
+    "ast_hash": "48bbba8f53d3ebd4b984cb856374b22c",
+    "semantic_hash": "48bbba8f53d3ebd4b984cb856374b22c"
+  },
+  "widgets/video_card.dart": {
+    "mtime": 1782158614.0,
+    "ast_hash": "50be4528da7da23570b1bfe6fc90215c",
+    "semantic_hash": "50be4528da7da23570b1bfe6fc90215c"
+  }
+}

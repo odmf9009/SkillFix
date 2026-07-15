@@ -1,0 +1,488 @@
+{
+  "communities": {
+    "0": [
+      "add_edit_reminder_screen_dart"
+    ],
+    "1": [
+      "animation"
+    ],
+    "2": [
+      "animationcontroller"
+    ],
+    "3": [
+      "app_localizations_dart"
+    ],
+    "4": [
+      "app_localizations_en_dart"
+    ],
+    "5": [
+      "app_localizations_es_dart"
+    ],
+    "6": [
+      "bool_get"
+    ],
+    "7": [
+      "calculator_detail_screen_dart"
+    ],
+    "8": [
+      "calculators_screen_dart"
+    ],
+    "9": [
+      "changenotifier"
+    ],
+    "10": [
+      "class"
+    ],
+    "11": [
+      "color"
+    ],
+    "12": [
+      "color_get"
+    ],
+    "13": [
+      "dart_async"
+    ],
+    "14": [
+      "dart_convert"
+    ],
+    "15": [
+      "data_calculators_data_dart"
+    ],
+    "16": [
+      "data_diagnostic_data_dart"
+    ],
+    "17": [
+      "data_emergency_data_dart"
+    ],
+    "18": [
+      "data_maintenance_data_dart"
+    ],
+    "19": [
+      "data_mock_data_dart"
+    ],
+    "20": [
+      "data_problems_data_dart"
+    ],
+    "21": [
+      "data_seasonal_data_dart"
+    ],
+    "22": [
+      "datetime"
+    ],
+    "23": [
+      "diagnostic_list_screen_dart"
+    ],
+    "24": [
+      "diagnostic_result_screen_dart"
+    ],
+    "25": [
+      "diagnostic_screen_dart"
+    ],
+    "26": [
+      "diagnosticquestion_get"
+    ],
+    "27": [
+      "double"
+    ],
+    "28": [
+      "double_get"
+    ],
+    "29": [
+      "emergency_detail_screen_dart"
+    ],
+    "30": [
+      "emergency_screen_dart"
+    ],
+    "31": [
+      "exception"
+    ],
+    "32": [
+      "favorites_screen_dart"
+    ],
+    "33": [
+      "formstate"
+    ],
+    "34": [
+      "future"
+    ],
+    "35": [
+      "home_problem_dart"
+    ],
+    "36": [
+      "home_screen_dart"
+    ],
+    "37": [
+      "icondata"
+    ],
+    "38": [
+      "icondata_get"
+    ],
+    "39": [
+      "int_get"
+    ],
+    "40": [
+      "list"
+    ],
+    "41": [
+      "locale"
+    ],
+    "42": [
+      "locale_get"
+    ],
+    "43": [
+      "localizationsdelegate"
+    ],
+    "44": [
+      "main_shell_dart"
+    ],
+    "45": [
+      "maintenance_screen_dart"
+    ],
+    "46": [
+      "map"
+    ],
+    "47": [
+      "materialpageroute"
+    ],
+    "48": [
+      "models_calculator_tool_dart"
+    ],
+    "49": [
+      "models_diagnostic_dart"
+    ],
+    "50": [
+      "models_emergency_dart"
+    ],
+    "51": [
+      "models_home_problem_dart"
+    ],
+    "52": [
+      "models_maintenance_reminder_dart"
+    ],
+    "53": [
+      "models_repair_history_dart"
+    ],
+    "54": [
+      "models_seasonal_checklist_dart"
+    ],
+    "55": [
+      "models_shopping_list_dart"
+    ],
+    "56": [
+      "models_task_dart"
+    ],
+    "57": [
+      "models_trade_dart"
+    ],
+    "58": [
+      "models_tutorial_video_dart"
+    ],
+    "59": [
+      "onboarding_screen_dart"
+    ],
+    "60": [
+      "package_flutter_foundation_dart"
+    ],
+    "61": [
+      "package_flutter_localizations_flutter_localizations_dart"
+    ],
+    "62": [
+      "package_flutter_material_dart"
+    ],
+    "63": [
+      "package_flutter_native_splash_flutter_native_splash_dart"
+    ],
+    "64": [
+      "package_flutter_services_dart"
+    ],
+    "65": [
+      "package_flutter_widgets_dart"
+    ],
+    "66": [
+      "package_google_fonts_google_fonts_dart"
+    ],
+    "67": [
+      "package_http_http_dart"
+    ],
+    "68": [
+      "package_intl_intl_dart"
+    ],
+    "69": [
+      "package_provider_provider_dart"
+    ],
+    "70": [
+      "package_shared_preferences_shared_preferences_dart"
+    ],
+    "71": [
+      "package_skillfix_l10n_app_localizations_dart"
+    ],
+    "72": [
+      "package_url_launcher_url_launcher_dart"
+    ],
+    "73": [
+      "package_uuid_uuid_dart"
+    ],
+    "74": [
+      "package_youtube_player_iframe_youtube_player_iframe_dart"
+    ],
+    "75": [
+      "pagecontroller"
+    ],
+    "76": [
+      "problem_detail_screen_dart"
+    ],
+    "77": [
+      "problem_list_screen_dart"
+    ],
+    "78": [
+      "repair_history_screen_dart"
+    ],
+    "79": [
+      "screens_splash_screen_dart"
+    ],
+    "80": [
+      "seasonal_screen_dart"
+    ],
+    "81": [
+      "services_favorites_service_dart"
+    ],
+    "82": [
+      "services_language_service_dart"
+    ],
+    "83": [
+      "services_maintenance_service_dart"
+    ],
+    "84": [
+      "services_repair_history_service_dart"
+    ],
+    "85": [
+      "services_seasonal_service_dart"
+    ],
+    "86": [
+      "services_shopping_list_service_dart"
+    ],
+    "87": [
+      "services_youtube_service_dart"
+    ],
+    "88": [
+      "set"
+    ],
+    "89": [
+      "shopping_list_detail_screen_dart"
+    ],
+    "90": [
+      "shopping_lists_screen_dart"
+    ],
+    "91": [
+      "singletickerproviderstatemixin"
+    ],
+    "92": [
+      "state"
+    ],
+    "93": [
+      "statefulwidget"
+    ],
+    "94": [
+      "statelesswidget"
+    ],
+    "95": [
+      "static_const"
+    ],
+    "96": [
+      "static_const_color"
+    ],
+    "97": [
+      "static_const_int"
+    ],
+    "98": [
+      "static_const_list"
+    ],
+    "99": [
+      "static_const_localizationsdelegate"
+    ],
+    "100": [
+      "static_const_string"
+    ],
+    "101": [
+      "static_final_list"
+    ],
+    "102": [
+      "static_final_map"
+    ],
+    "103": [
+      "static_list"
+    ],
+    "104": [
+      "static_themedata_get"
+    ],
+    "105": [
+      "string"
+    ],
+    "106": [
+      "string_get"
+    ],
+    "107": [
+      "tabcontroller"
+    ],
+    "108": [
+      "texteditingcontroller"
+    ],
+    "109": [
+      "theme_app_theme_dart"
+    ],
+    "110": [
+      "tickerproviderstatemixin"
+    ],
+    "111": [
+      "utils_affiliate_links_dart"
+    ],
+    "112": [
+      "video_list_screen_dart"
+    ],
+    "113": [
+      "video_player_screen_dart"
+    ],
+    "114": [
+      "voidcallback"
+    ],
+    "115": [
+      "widgets_problem_card_dart"
+    ],
+    "116": [
+      "widgets_task_card_dart"
+    ],
+    "117": [
+      "widgets_video_card_dart"
+    ],
+    "118": [
+      "youtubeplayercontroller"
+    ]
+  },
+  "cohesion": {
+    "0": 1.0,
+    "1": 1.0,
+    "2": 1.0,
+    "3": 1.0,
+    "4": 1.0,
+    "5": 1.0,
+    "6": 1.0,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0
+  },
+  "gods": [],
+  "surprises": [],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

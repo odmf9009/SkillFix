@@ -44,6 +44,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Graphify: se versiona el grafo, pero no el caché regenerable
+graphify-out/cache/
+
 # Backups (no deben subirse al repositorio)
 backup.zip
 backup_v1.0/
